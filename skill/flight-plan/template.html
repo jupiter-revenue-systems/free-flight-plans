@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flight Plan: [TASK NAME]</title>
+<style>
+  :root { --bg:#f7f5f0; --card:#ffffff; --ink:#1c1b19; --soft:#6b665e; --line:#e3ded4; --accent:#1f4e79; --ok:#2e6b3e; --warn:#9a4b00; --code:#f1eee7; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14151a; --card:#1d1f26; --ink:#eeeae2; --soft:#a39f96; --line:#30333c; --accent:#8fbde8; --ok:#86c996; --warn:#f0a860; --code:#262932; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:32px 16px 80px; }
+  h1 { font-size:30px; line-height:1.2; margin:0 0 8px; }
+  h2 { font-size:21px; margin:40px 0 12px; }
+  .summary { font-size:19px; color:var(--soft); margin:0 0 20px; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px 20px; color:var(--soft); font-size:15px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 0; }
+  .meta b { color:var(--ink); font-weight:600; }
+  ul { padding-left:22px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; margin:16px 0; }
+  .step h3 { margin:0 0 8px; font-size:19px; }
+  .num { display:inline-block; min-width:30px; height:30px; line-height:30px; text-align:center; border-radius:15px; background:var(--accent); color:var(--card); font-size:15px; font-weight:700; margin-right:8px; }
+  .copy { position:relative; background:var(--code); border:1px solid var(--line); border-radius:8px; margin:12px 0; }
+  .copy pre { margin:0; padding:14px 14px 14px; padding-right:86px; white-space:pre-wrap; word-break:break-word; font:15px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .copy button { position:absolute; top:8px; right:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:6px; padding:6px 12px; font-size:14px; cursor:pointer; }
+  .copy button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .check { color:var(--ok); margin:10px 0 0; font-weight:600; }
+  .caution { border-color:var(--warn); }
+  .caution .warn { color:var(--warn); font-weight:700; margin:0 0 8px; }
+  .todo { color:var(--warn); font-weight:700; }
+  label.done { display:flex; gap:8px; align-items:center; margin-top:12px; color:var(--soft); font-size:15px; }
+  footer { margin-top:48px; color:var(--soft); font-size:14px; border-top:1px solid var(--line); padding-top:16px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Flight Plan: [TASK NAME]</h1>
+  <p class="summary">[One line: what you'll have when you finish.]</p>
+  <div class="meta">
+    <span><b>For:</b> [who follows this]</span>
+    <span><b>Time:</b> [how long, from the owner]</span>
+    <span><b>Last updated:</b> [date]</span>
+  </div>
+
+  <h2>Before you start</h2>
+  <ul>
+    <li>[A tool, file or access they need ready]</li>
+    <li>[Another one]</li>
+  </ul>
+
+  <h2>The steps</h2>
+
+  <!-- A normal step. Copy this block for each step. -->
+  <section class="step">
+    <h3><span class="num">1</span>[Verb first: what to do]</h3>
+    <p>[One or two plain sentences. Button names in <b>bold</b>.]</p>
+    <div class="copy">
+      <pre>[Exact text to copy. Nothing else goes in here.]</pre>
+      <button type="button">Copy</button>
+    </div>
+    <p class="check">Check: [what you should see if it worked]</p>
+    <label class="done"><input type="checkbox"> Done</label>
+  </section>
+
+  <!-- A caution step: sends, publishes, deletes, charges or can't be undone. -->
+  <section class="step caution">
+    <p class="warn">Careful: [what this step does and why to slow down]</p>
+    <h3><span class="num">2</span>[Verb first: what to do]</h3>
+    <p>Stop and check [thing] before you click.</p>
+    <p class="check">Check: [what you should see if it worked]</p>
+    <label class="done"><input type="checkbox"> Done</label>
+  </section>
+
+  <h2>If something goes wrong</h2>
+  <ul>
+    <li><b>[What you see]:</b> [what to do]</li>
+    <li><b>Still stuck:</b> [who to ask and how]</li>
+  </ul>
+
+  <h2>You're done when</h2>
+  <ul>
+    <li>[The result you can see]</li>
+    <li>[Who you told, and how]</li>
+  </ul>
+
+  <footer>Made with the Flight Plan skill. ekaistone.com/training</footer>
+</main>
+<script>
+  // Copy buttons: copies the text of the block next to the button.
+  document.querySelectorAll('.copy button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.parentElement.querySelector('pre').innerText;
+      function ok() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); ok(); } catch (e) { btn.textContent = 'Select and copy'; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(ok, fallback); }
+      else { fallback(); }
+    });
+  });
+</script>
+</body>
+</html>
