@@ -35,7 +35,7 @@ Coaches and agency owners whose team asks them how to do everything, and anyone 
 ## Next
 
 - More free training: https://ekaistone.com/training
-- Want your whole business mapped like this? Strategy Call, $750: https://ekaistone.com/strategy-session
+- Want your whole business mapped like this? Strategy Session, $750: https://ekaistone.com/strategy-session
 
 Questions: support@ekaistone.com
 
